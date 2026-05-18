@@ -72,121 +72,18 @@ pip install -r requirements.txt
 
 ---
 
-## 📖 Uso
-
-### Carregamento Básico
-
-```python
-import pandas as pd
-import numpy as np
-
-# Carregar dataset
-df = pd.read_csv('data/dataset.csv')
-
-# Visualizar primeiras linhas
-print(df.head())
-
-# Informações sobre o dataset
-print(df.info())
-print(df.describe())
-```
-
-### Exemplo com Machine Learning
-
-```python
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.ensemble import RandomForestClassifier
-
-# Carregar dados
-df = pd.read_csv('data/dataset.csv')
-
-# Separar features e target
-X = df.drop('target', axis=1)
-y = df['target']
-
-# Split treino/teste
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Normalizar features
-scaler = StandardScaler()
-X_train_scaled = scaler.fit_transform(X_train)
-X_test_scaled = scaler.transform(X_test)
-
-# Treinar modelo
-model = RandomForestClassifier(n_estimators=100, random_state=42)
-model.fit(X_train_scaled, y_train)
-
-# Avaliar
-score = model.score(X_test_scaled, y_test)
-print(f"Acurácia: {score:.4f}")
-```
-
-### Análise Exploratória
-
-```python
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-# Configurar estilo
-sns.set_style("whitegrid")
-
-# Estatísticas descritivas
-print(df.describe())
-
-# Correlação entre variáveis
-plt.figure(figsize=(10, 8))
-sns.heatmap(df.corr(), annot=True, cmap='coolwarm')
-plt.title('Matriz de Correlação')
-plt.show()
-
-# Distribuição de variáveis
-df.hist(figsize=(12, 10))
-plt.tight_layout()
-plt.show()
-```
-
----
-
 ## 📁 Estrutura do Projeto
 
 ```
 DS-KarsDataSet/
-├── README.md                 # Este arquivo
-├── requirements.txt          # Dependências do projeto
-├── LICENSE                   # Licença MIT
-│
-├── data/                     # Datasets
-│   ├── raw/                  # Dados originais
-│   └── processed/            # Dados processados
-│
-├── notebooks/                # Jupyter Notebooks
-│   ├── 01_exploratory_analysis.ipynb
-│   ├── 02_data_preprocessing.ipynb
-│   └── 03_model_development.ipynb
-│
-├── src/                      # Código-fonte
-│   ├── __init__.py
-│   ├── data_loader.py       # Funções de carregamento
-│   ├── preprocessing.py     # Funções de preprocessamento
-│   └── utils.py             # Funções auxiliares
-│
-├── scripts/                  # Scripts executáveis
-│   └── load_dataset.py
-│
-└── tests/                    # Testes unitários
-    └── test_data_loader.py
+├── README.md
+├── src/                        
+    ├── app.py                  # App streamlit
+    ├── OLX_cars_dataset00.csv  # Dataset usado
+    ├── requirements.txt        # Dependências do projeto
+    ├── modelo_olx_v2.pkl       # Modelo previamente treinado
+    └── train.py                # Treinamento do modelo
 ```
-
----
-
-## 📊 Datasets Disponíveis
-
-| Dataset | Descrição | Linhas | Colunas | Tipo |
-|---------|-----------|--------|---------|------|
-| Dataset Principal | Dados para análise principal | TBD | TBD | Classificação/Regressão |
-
-*Atualize esta tabela com informações específicas dos seus datasets*
 
 ---
 
@@ -200,43 +97,11 @@ numpy>=1.21.0          # Computação numérica
 scikit-learn>=1.0.0    # Machine Learning
 matplotlib>=3.5.0      # Visualização
 seaborn>=0.11.0        # Visualização estatística
-jupyter>=1.0.0         # Notebooks interativos
 ```
 
 Para instalar todas as dependências:
 ```bash
 pip install -r requirements.txt
-```
-
----
-
-## 📚 Exemplos de Análise
-
-### Análise Exploratória (EDA)
-
-```python
-# Identificar valores faltantes
-print(df.isnull().sum())
-
-# Remover duplicatas
-df = df.drop_duplicates()
-
-# Estatísticas por grupo
-print(df.groupby('categoria').agg({'valor': ['mean', 'std', 'count']}))
-```
-
-### Preprocessamento de Dados
-
-```python
-from sklearn.preprocessing import MinMaxScaler, LabelEncoder
-
-# Normalizar dados numéricos
-scaler = MinMaxScaler()
-df[['coluna1', 'coluna2']] = scaler.fit_transform(df[['coluna1', 'coluna2']])
-
-# Encodar variáveis categóricas
-le = LabelEncoder()
-df['categoria_encoded'] = le.fit_transform(df['categoria'])
 ```
 
 ---
@@ -247,22 +112,9 @@ Contribuições são bem-vindas! Para contribuir com este projeto:
 
 1. **Faça um Fork** do repositório
 2. **Crie uma Branch** para sua feature (`git checkout -b feature/MinhaFeature`)
-3. **Commit suas mudanças** (`git commit -m 'Adiciona MinhaFeature'`)
+3. **Commit suas mudanças** (`git commit -m 'feat: add MinhaFeature'`)
 4. **Push para a Branch** (`git push origin feature/MinhaFeature`)
 5. **Abra um Pull Request**
-
-### Diretrizes
-
-- Mantenha a qualidade do código
-- Adicione testes para novas funcionalidades
-- Atualize a documentação conforme necessário
-- Siga o estilo de código PEP 8
-
----
-
-## 📝 Licença
-
-Este projeto está licenciado sob a **Licença MIT** - veja o arquivo [LICENSE](LICENSE) para detalhes.
 
 ---
 
@@ -272,6 +124,9 @@ Este projeto está licenciado sob a **Licença MIT** - veja o arquivo [LICENSE](
 
 - GitHub: [@leandroFilipy](https://github.com/leandroFilipy)
 - Issues: [Abrir uma Issue](https://github.com/leandroFilipy/DS-KarsDataSet/issues)
+
+<sub>Gabs helped on the frontend by the way...</sub>
+<sub><a href="https://github.com/gabrielEFagundes">@gabrielEFagundes</a> - All rights reserved</sub>
 
 ---
 
